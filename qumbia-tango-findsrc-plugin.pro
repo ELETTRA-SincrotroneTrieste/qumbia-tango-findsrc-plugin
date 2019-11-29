@@ -1,6 +1,3 @@
-include(/usr/local/cumbia-libs/include/cumbia-qtcontrols/cumbia-qtcontrols.pri)
-
-
 # The application will be installed under INSTALL_ROOT (i.e. prefix)
 #
 # WARNING: INSTALL_ROOT is defined both by qumbia-epics-controls.pri and qumbia-tango-controls.pri
@@ -13,6 +10,10 @@ include(/usr/local/cumbia-libs/include/cumbia-qtcontrols/cumbia-qtcontrols.pri)
 isEmpty(INSTALL_ROOT) {
     INSTALL_ROOT = /usr/local/cumbia-libs
 }
+
+message("qumbia-tango-findsrc-plugin: cumbia-qtcontrols dependency searched under $${INSTALL_ROOT}")
+
+include($${INSTALL_ROOT}/include/cumbia-qtcontrols/cumbia-qtcontrols.pri)
 
 PKGCONFIG += qumbia-tango-controls cumbia-tango tango
 

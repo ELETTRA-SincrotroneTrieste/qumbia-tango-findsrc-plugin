@@ -3,6 +3,7 @@ _qutangofindsrc()
     local cur prev prevprev opts base
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
+    _get_comp_words_by_ref -n : cur
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     prevprev="${COMP_WORDS[COMP_CWORD-2]}"
 
@@ -16,10 +17,16 @@ _qutangofindsrc()
     #
     #case "${prev}" in
     #    tangoread)
-            local running=$(for x in `qumbia-tango-find-src ${cur}`; do echo ${x} ; done )
-          #  local reader_op=$(for x in `cumbiareader --list-options ${cur}`; do echo ${x} ; done )
-          #  local all_ops=$running+="${reader_op[@]}"
-            COMPREPLY=( $(compgen -W "${running}" -- ${cur}) )
+            if [ "${cur}" = "-" ] ||  [ "${cur}" = "--" ] ; then
+                local reader_op=$(for x in `cumbiareader --list-options ${cur}`; do echo ${x} ; done )
+                COMPREPLY=( $(compgen -W "${reader_op}" -- ${cur}) )
+            else
+                local running=$(for x in `qumbia-tango-find-src ${cur}`; do echo ${x} ; done )
+                COMPREPLY=( $(compgen -W "${running}" -- ${cur}) )
+            fi
+
+
+
             [[ $COMPREPLY == */ ]] && compopt -o nospace
             [[ "$COMPREPLY" == *-\> ]] && compopt -o nospace
 

@@ -26,6 +26,8 @@ public:
 
 private:
     QuTFindSrcPluginPrivate *d;
+
+    bool m_is_command(const QString &find, QString& separator);
 };
 
 #endif // QUTFINDSRCPLUGIN_H

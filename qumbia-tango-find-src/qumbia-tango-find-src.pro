@@ -1,10 +1,3 @@
-include (/usr/local/cumbia-libs/include/cumbia-qtcontrols/cumbia-qtcontrols.pri)
-
-TARGET = bin/qumbia-tango-find-src
-TEMPLATE = app
-
-PKGCONFIG += qumbia-tango-controls
-
 # The application will be installed under INSTALL_ROOT (i.e. prefix)
 #
 # WARNING: INSTALL_ROOT is defined both by qumbia-epics-controls.pri and qumbia-tango-controls.pri
@@ -17,6 +10,27 @@ PKGCONFIG += qumbia-tango-controls
 isEmpty(INSTALL_ROOT) {
     INSTALL_ROOT = /usr/local/cumbia-libs
 }
+
+include ($${INSTALL_ROOT}/include/cumbia-qtcontrols/cumbia-qtcontrols.pri)
+
+# comment this line if you want to install bash completion scripts
+# system wide
+isEmpty(BASH_COMPLETION_DIR) {
+    BASH_COMPLETION_DIR=$${INSTALL_ROOT}/share/bash-completion.d
+}
+
+isEmpty(BASH_COMPLETION_DIR) {
+    message("cumbia: BASH_COMPLETION_DIR is empty: using pkg-config to find system wide bash completion dir")
+    BASH_COMPLETION_DIR=$$system(pkg-config --variable=completionsdir bash-completion)
+}
+
+completion.path = $${BASH_COMPLETION_DIR}
+completion.files = bash_completion.d/qumbia-tango-find-src
+
+TARGET = bin/qumbia-tango-find-src
+TEMPLATE = app
+
+PKGCONFIG += qumbia-tango-controls
 
 QT -= gui
 
@@ -39,11 +53,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp
-
-
-BASH_COMPLETION_DIR=$$system(pkg-config --variable=completionsdir bash-completion)
-completion.path = $${BASH_COMPLETION_DIR}
-completion.files = bash_completion.d/qumbia-tango-find-src
 
 message("bash completion dir is $${BASH_COMPLETION_DIR}")
 
