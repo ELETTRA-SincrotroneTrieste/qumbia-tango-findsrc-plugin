@@ -23,7 +23,6 @@ QuTFindSrcPlugin::~QuTFindSrcPlugin()
 
 QStringList QuTFindSrcPlugin::matches(const QString &find)
 {
-    Tango::Database *db = new Tango::Database;
     QStringList matches;
     QString prefix;
     std::string pattern;
@@ -33,8 +32,9 @@ QStringList QuTFindSrcPlugin::matches(const QString &find)
     // search
     bool has_wildcards = find.contains("*");
     !has_wildcards ? pattern = find.toStdString() + "*" : pattern = find.toStdString();
-    Tango::DbDatum dbd;
     try {
+        Tango::Database *db = new Tango::Database;
+        Tango::DbDatum dbd;
         std::vector<std::string> v_mat;
         if(!has_wildcards && (find.count('/') == 0 || find.isEmpty())) {
             dbd = db->get_device_domain(pattern);
