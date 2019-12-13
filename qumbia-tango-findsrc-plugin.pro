@@ -1,3 +1,3 @@
 TEMPLATE = subdirs
 CONFIG += ordered
-SUBDIRS =
+SUBDIRS = qumbia-tango-find-src-app  qumbia-tango-findsrc-plugin-lib 

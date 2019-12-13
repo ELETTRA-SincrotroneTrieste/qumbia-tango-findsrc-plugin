@@ -9,7 +9,7 @@ class QuTFindSrcPluginPrivate;
 class QuTFindSrcPlugin : public QObject, public QuTFindSrcsPluginI
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QGenericPluginFactoryInterface" FILE "qumbia-tango-findsrc-plugin.json")
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QGenericPluginFactoryInterface" FILE "qumbia-tango-findsrc-plugin-lib.json")
     Q_INTERFACES(QuTFindSrcsPluginI)
 
 public:
