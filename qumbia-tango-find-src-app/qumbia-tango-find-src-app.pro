@@ -24,9 +24,6 @@ isEmpty(BASH_COMPLETION_DIR) {
     BASH_COMPLETION_DIR=$$system(pkg-config --variable=completionsdir bash-completion)
 }
 
-completion.path = $${BASH_COMPLETION_DIR}
-completion.files = bash_completion.d/qumbia-tango-find-src
-
 TARGET = bin/qumbia-tango-find-src
 TEMPLATE = app
 
@@ -55,6 +52,10 @@ SOURCES += \
         main.cpp
 
 message("bash completion dir is $${BASH_COMPLETION_DIR}")
+
+
+completion.path = $${BASH_COMPLETION_DIR}
+completion.files = bash-completion.d/qumbia-tango-find-src
 
 inst.files = $${TARGET}
 inst.path = $${INSTALL_ROOT}/bin
