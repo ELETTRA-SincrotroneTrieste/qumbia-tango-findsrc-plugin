@@ -46,7 +46,7 @@ DISTFILES += qumbia-tango-findsrc-plugin-lib.json
 TARGET = qumbia-tango-findsrc-plugin
 
 unix {
-    target.path = $${DEFINES_CUMBIA_QTCONTROLS_PLUGIN_DIR}
+    target.path = $${CUMBIA_QTCONTROLS_PLUGIN_DIR}
     INSTALLS += target
 }
 
