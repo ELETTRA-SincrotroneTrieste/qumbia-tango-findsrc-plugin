@@ -11,6 +11,11 @@ isEmpty(INSTALL_ROOT) {
     INSTALL_ROOT = /usr/local/cumbia-libs
 }
 
+# Here qumbia-plugins libraries will be installed
+QUMBIA_PLUGINS_LIBDIR=$${INSTALL_ROOT}/lib/qumbia-plugins
+
+PLUGIN_LIB_DIR = $${QUMBIA_PLUGINS_LIBDIR}
+
 message("qumbia-tango-findsrc-plugin: cumbia-qtcontrols dependency searched under $${INSTALL_ROOT}")
 
 include($${INSTALL_ROOT}/include/cumbia-qtcontrols/cumbia-qtcontrols.pri)
@@ -45,11 +50,9 @@ DISTFILES += qumbia-tango-findsrc-plugin-lib.json
 
 TARGET = qumbia-tango-findsrc-plugin
 
-message("cumbia-tango-findsrc-plugin: plugin installation dir:  $${DEFINES_CUMBIA_QTCONTROLS_PLUGIN_DIR}")
+message("cumbia-tango-findsrc-plugin: plugin installation dir:  $${PLUGIN_LIB_DIR}")
 
 unix {
-    target.path = $${DEFINES_CUMBIA_QTCONTROLS_PLUGIN_DIR}
+    target.path = $${PLUGIN_LIB_DIR}
     INSTALLS += target
 }
-
-# message("cumbia-tango-findsrc-plugin: include installation dir: $${INC_PATH}")
