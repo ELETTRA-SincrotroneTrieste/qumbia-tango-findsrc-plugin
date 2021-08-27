@@ -22,7 +22,7 @@ CONFIG += plugin
 
 CONFIG += c++17
 
-DEFINES -= QT_NO_DEBUG_OUTPUT
+# DEFINES -= QT_NO_DEBUG_OUTPUT
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -45,10 +45,11 @@ DISTFILES += qumbia-tango-findsrc-plugin-lib.json
 
 TARGET = qumbia-tango-findsrc-plugin
 
+message("cumbia-tango-findsrc-plugin: plugin installation dir:  $${DEFINES_CUMBIA_QTCONTROLS_PLUGIN_DIR}")
+
 unix {
-    target.path = $${CUMBIA_QTCONTROLS_PLUGIN_DIR}
+    target.path = $${DEFINES_CUMBIA_QTCONTROLS_PLUGIN_DIR}
     INSTALLS += target
 }
 
-message("cumbia-tango-findsrc-plugin: plugin installation dir:  $${DEFINES_CUMBIA_QTCONTROLS_PLUGIN_DIR}")
 # message("cumbia-tango-findsrc-plugin: include installation dir: $${INC_PATH}")
