@@ -11,6 +11,10 @@ isEmpty(INSTALL_ROOT) {
     INSTALL_ROOT = /usr/local/cumbia-libs
 }
 
+isEmpty(prefix) {
+    prefix = $${INSTALL_ROOT}
+}
+
 include ($${INSTALL_ROOT}/include/cumbia-qtcontrols/cumbia-qtcontrols.pri)
 
 # comment this line if you want to install bash completion scripts

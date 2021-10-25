@@ -11,6 +11,10 @@ isEmpty(INSTALL_ROOT) {
     INSTALL_ROOT = /usr/local/cumbia-libs
 }
 
+isEmpty(prefix) {
+    prefix = $${INSTALL_ROOT}
+}
+
 # Here qumbia-plugins libraries will be installed
 QUMBIA_PLUGINS_LIBDIR=$${INSTALL_ROOT}/lib/qumbia-plugins
 
