@@ -31,6 +31,18 @@ CONFIG += plugin
 
 CONFIG += c++17
 
+isEmpty(buildtype) {
+        buildtype = release
+} else {
+    equals(buildtype, debug) {
+        message("")
+        message("debug build")
+        message("")
+    }
+}
+
+CONFIG += $${buildtype}
+
 # DEFINES -= QT_NO_DEBUG_OUTPUT
 
 # The following define makes your compiler emit warnings if you use
